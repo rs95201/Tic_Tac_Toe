@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cctype>
 #include "board.hpp"
 #include "console.hpp"
 #include "game_state.hpp"
