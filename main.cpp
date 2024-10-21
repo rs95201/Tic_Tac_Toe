@@ -17,7 +17,15 @@ int main()
   Human_Player current_player = player_one;
   Game game(&game_state, &console,  &player_one, &player_two, &current_player);
 
-  game.start();
+char ans = 'Y';
+while(toupper(ans) == 'Y')
+{
+    game.start();
   std::cout << game_state.current_state() << std::endl;
+  std::cout << "Play again (Y/N)?" << std::endl;
+  std::cin >> ans;
+  board.clear();
+}
+  
   return 0;
 }
