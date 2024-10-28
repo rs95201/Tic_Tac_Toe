@@ -16,6 +16,7 @@ void Human_Player::get_move()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid entry!!! Please try again\n";
         cout << "What is your move?\n";
+        break;
         }
         cin >> value;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -25,6 +26,7 @@ void Human_Player::get_move()
             cout << "What is your move?\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            break;
         }
         else if(value < 1 || value > 9)
         {

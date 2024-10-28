@@ -1,14 +1,15 @@
 #include <iostream>
+#include <limits>
 #include <cctype>
 #include "board.hpp"
 #include "console.hpp"
 #include "game_state.hpp"
 #include "human_player.hpp"
 #include "game.hpp"
-
+using namespace std;
 int main()
 {
-  std::cout << "Welcome to Tic-Tac-Toe!" << std::endl;
+  cout << "Welcome to Tic-Tac-Toe!" << endl;
   Board board;
   GameState game_state(&board);
   Console console(&board);
@@ -21,10 +22,12 @@ char ans = 'Y';
 while(toupper(ans) == 'Y')
 {
     game.start();
-  std::cout << game_state.current_state() << std::endl;
-  std::cout << console.display() << std::endl; 
-  std::cout << "Play again (Y/N)?" << std::endl;
-  std::cin >> ans;
+  cout << game_state.current_state() << endl;
+  cout << console.display() << endl; 
+  cout << "Play again (Y/N)?" << endl;
+  cin >> ans;
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
   board.clear();
 }
   
