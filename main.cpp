@@ -22,6 +22,7 @@ while(toupper(ans) == 'Y')
 {
     game.start();
   std::cout << game_state.current_state() << std::endl;
+  std::cout << console.display() << std::endl; 
   std::cout << "Play again (Y/N)?" << std::endl;
   std::cin >> ans;
   board.clear();

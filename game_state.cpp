@@ -25,29 +25,35 @@ std::string GameState::select_winner(int cell)
     output += " wins";
     return output;
 }
-std::string GameState::current_state() {
+std::string GameState::current_state() 
+{
     
-    for (int i = 0; i < 8; ++i) {
-        if (three_in_a_row(winning_combos[i][0], winning_combos[i][1], winning_combos[i][2])) {
+    for (int i = 0; i < 8; ++i) 
+    {
+        if (three_in_a_row(winning_combos[i][0], winning_combos[i][1], winning_combos[i][2])) 
+        {
             return select_winner(winning_combos[i][0]);
         }
     }
 
     
     bool is_board_full = true;
-    for (int i = 1; i <= 9; ++i) {
+    for (int i = 1; i <= 9; ++i) 
+    {
         if (board->get_mark(i) == '1' || board->get_mark(i) == '2' || 
             board->get_mark(i) == '3' || board->get_mark(i) == '4' || 
             board->get_mark(i) == '5' || board->get_mark(i) == '6' || 
             board->get_mark(i) == '7' || board->get_mark(i) == '8' || 
-            board->get_mark(i) == '9') {
+            board->get_mark(i) == '9') 
+        {
             is_board_full = false; 
             break;
         }
     }
 
     
-    if (is_board_full) {
+    if (is_board_full) 
+    {
         return "It's a tie!";
     }
 
