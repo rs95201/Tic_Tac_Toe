@@ -1,24 +1,27 @@
 #include <iostream>
 #include <limits>
 
-#include "human_player.hpp"
+#include "player.hpp"
+#include "swarm.hpp"
+#include "winning_combos.hpp"
+
 using namespace std;
-Human_Player::Human_Player(Board *board, char mark)
+Swarm::Swarm(Board* board, char mark) 
 {
     this->board = board;
     this->mark = mark;
-    this->combos = WinningCombos();
-
+    std::vector<int> additional_win =  {1,3,7,9};
+    this->combos = WinningCombos(additional_win);
 }
-char Human_Player::get_mark()
+char Swarm::get_mark()
 {
-   return this->mark;
+    return this->mark;
 }
-WinningCombos Human_Player::get_winning_combos()
+WinningCombos Swarm::get_winning_combos()
 {
-   return this->combos;
+  return this->combos;
 }
-void Human_Player::get_move()
+void Swarm::get_move()
 {
     bool valid = false;
     int value;

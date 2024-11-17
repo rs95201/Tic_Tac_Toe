@@ -1,23 +1,36 @@
 #include "game_state.hpp"
 
-GameState::GameState(Board* board): board(board) 
+GameState::GameState(Board* board)
 {
+    this->board = board;
+}
+bool GameState::winning_combo(std::vector<int> combo)
+{
+    if(combo.size() == 3)
+    {
+        return board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && board->get_mark(combo.at(1)) == board->get_mark(combo.at(2));
+    }
+    else
+    {
+       if ((board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && 
+             board->get_mark(combo.at(0)) == board->get_mark(combo.at(2)))||
+            (board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && 
+             board->get_mark(combo.at(0)) == board->get_mark(combo.at(3)))||
+            (board->get_mark(combo.at(0)) == board->get_mark(combo.at(2)) && 
+             board->get_mark(combo.at(0)) == board->get_mark(combo.at(3)))||
+            (board->get_mark(combo.at(1)) == board->get_mark(combo.at(2)) && 
+             board->get_mark(combo.at(1)) == board->get_mark(combo.at(3))))
+        {
+            return true;
+        }
+          else
+          {
+            return false;
+          }
+    }       
     
-    winning_combos[0][0] = 1; winning_combos[0][1] = 2; winning_combos[0][2] = 3; // Top row
-    winning_combos[1][0] = 4; winning_combos[1][1] = 5; winning_combos[1][2] = 6; // Middle row
-    winning_combos[2][0] = 7; winning_combos[2][1] = 8; winning_combos[2][2] = 9; // Bottom row
-    winning_combos[3][0] = 1; winning_combos[3][1] = 4; winning_combos[3][2] = 7; // First column
-    winning_combos[4][0] = 2; winning_combos[4][1] = 5; winning_combos[4][2] = 8; // Middle column
-    winning_combos[5][0] = 3; winning_combos[5][1] = 6; winning_combos[5][2] = 9; // Last column
-    winning_combos[6][0] = 1; winning_combos[6][1] = 5; winning_combos[6][2] = 9; // First diagonal
-    winning_combos[7][0] = 3; winning_combos[7][1] = 5; winning_combos[7][2] = 7; // Second diagonal
 }
 
-
-bool GameState::three_in_a_row(int cell_one, int cell_two, int cell_three)
-{
-	return(board->get_mark(cell_one) == board->get_mark(cell_two) && board->get_mark(cell_two) == board->get_mark(cell_three));
-}
 std::string GameState::select_winner(int cell)
 {
     std::string output = "";
@@ -25,18 +38,18 @@ std::string GameState::select_winner(int cell)
     output += " wins";
     return output;
 }
-std::string GameState::current_state() 
+std::string GameState::current_state(Player *current_player) 
 {
-    
-    for (int i = 0; i < 8; ++i) 
-    {
-        if (three_in_a_row(winning_combos[i][0], winning_combos[i][1], winning_combos[i][2])) 
-        {
-            return select_winner(winning_combos[i][0]);
-        }
-    }
+  std::vector<std::vector<int>> combos = current_player->get_winning_combos().all();
+  std::vector<std::vector<int>>::iterator combo_iterator;
 
-    
+  for (combo_iterator = combos.begin(); combo_iterator != combos.end(); combo_iterator++)
+  {
+    if (this->winning_combo(*combo_iterator))
+    {
+      return select_winner(combo_iterator->at(0));
+    }
+  }
     bool is_board_full = true;
     for (int i = 1; i <= 9; ++i) 
     {
@@ -50,8 +63,6 @@ std::string GameState::current_state()
             break;
         }
     }
-
-    
     if (is_board_full) 
     {
         return "It's a tie!";

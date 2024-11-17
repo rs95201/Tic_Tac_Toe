@@ -2,17 +2,18 @@
 
 #include "game_state.hpp"
 #include "console.hpp"
-#include "human_player.hpp"
+#include "player.hpp"
 
 class Game
 {
     GameState* game_state;
     Console* console;
-    Human_Player* player_one;
-    Human_Player* player_two;
-    Human_Player* current_player;
+    Player* player_one;
+    Player* player_two;
+    Player* current_player;
+    Player *other_player;
     public:
     
-    Game(GameState* game_state, Console* console, Human_Player* player_one, Human_Player* player_two, Human_Player* current_player);
+    Game(Console *console, GameState *game_state, Player *player_one, Player *player_two);
     void start();
 };

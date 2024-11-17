@@ -9,7 +9,7 @@ void Board::move(int i, char m)
 }
 char Board::get_mark(int i)
 {
-    return moves.at(i-1);
+    return moves.at(i-1); 
 }
 void Board::clear()
 {
