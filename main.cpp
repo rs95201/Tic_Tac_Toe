@@ -15,7 +15,7 @@ using namespace std;
 int main() 
 {
     bool playAgain = true;  
-    cout << "Welcome to Tic-Tac-Toe!" << endl;
+    cout << "\n\t\tWelcome to Tic-Tac-Toe!" << endl;
 
     while (playAgain) 
     {
@@ -52,7 +52,15 @@ int main()
                
                 while (true) 
                 {
-                    cout << "Player 1: Do you want to play as Pyromancer or Swarm?" << endl;
+                    cout << "Player 1: Choose an archetype: Pyromancer or Swarm?" << endl;
+                    cout <<  endl;
+                    cout << "Pyromancer: This archetype allows the user to use a special move "
+                    "once per game that explode all the current marks on the "
+                    "board and resets the board to an empty state" << endl;
+                    cout <<  endl;
+                    cout << "Swarm: This archetype allows the user to win the game by "
+                    "filling in all four corners of the board" << endl;
+                    cout <<  endl;
                     cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
                     cin >> battle_choice1;
                     cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
@@ -69,7 +77,15 @@ int main()
 
                 while (true) 
                 {
-                    cout << "Player 2: Do you want to play as Pyromancer or Swarm?" << endl;
+                    cout << "Player 2: Choose an archetype: Pyromancer or Swarm?" << endl;
+                    cout <<  endl;
+                    cout << "Pyromancer: This archetype allows the user to use a special move "
+                    "once per game that explode all the current marks on the "
+                    "board and resets the board to an empty state" << endl;
+                    cout <<  endl;
+                    cout << "Swarm: This archetype allows the user to win the game by "
+                    "filling in all four corners of the board" << endl;
+                    cout <<  endl;
                     cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
                     cin >> battle_choice2;
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');  
