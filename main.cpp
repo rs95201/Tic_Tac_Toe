@@ -13,24 +13,23 @@
 using namespace std;
 
 int main() {
-    Board board;
-    GameState game_state(&board);
-    Console console(&board);
-    
-    char ans = 'Y';  // Initially set to 'Y' to start the first game
-    bool valid = false;
+    bool playAgain = true;  // Track whether the player wants to play again
 
-    while (toupper(ans) == 'Y') {  // Continue playing as long as the player wants to
-        valid = false;
-
+    while (playAgain) {
+        Board board;  // Reinitialize the board for each game
+        GameState game_state(&board);
+        Console console(&board);
+        
+        bool valid = false;
         // Game mode selection loop
         while (!valid) {
             string ans;
             cout << "Welcome to Tic-Tac-Toe!" << endl;
             cout << "Do you want to play \"regular\" or \"battle\" Tic-Tac-Toe?" << endl;
             cin >> ans;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear any extra input
+            
+            // Check for valid game mode
             if (ans == "regular") {
                 valid = true;
                 Human_Player player_one(&board, 'X');
@@ -45,12 +44,12 @@ int main() {
                 cout << "Player 1: Do you want to play as Pyromancer or Swarm?" << endl;
                 cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
                 cin >> battle_choice1;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
 
                 cout << "Player 2: Do you want to play as Pyromancer or Swarm?" << endl;
                 cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
                 cin >> battle_choice2;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
 
                 if (battle_choice1 == "Pyromancer") {
                     if (battle_choice2 == "Swarm") {
@@ -88,25 +87,25 @@ int main() {
             }
         }
 
-        // Ask the player if they want to play again
-        bool valid_answer = false;
-        while (!valid_answer) {
+        // Replay logic
+        char replayAnswer;
+        bool validAnswer = false;
+        while (!validAnswer) {
             cout << "Do you want to play again? (Y/N): ";
-            cin >> ans;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear any extra newline characters
-            ans = toupper(ans);  // Convert input to uppercase to handle case insensitivity
+            cin >> replayAnswer;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
+            replayAnswer = toupper(replayAnswer);  // Convert to uppercase for case insensitivity
             
-            if (ans == 'Y' || ans == 'N') {
-                valid_answer = true;  // Valid answer, exit the loop
+            if (replayAnswer == 'Y') {
+                validAnswer = true;
+                playAgain = true;  // Set playAgain to true to continue playing
+            } else if (replayAnswer == 'N') {
+                validAnswer = true;
+                playAgain = false;  // Set playAgain to false to exit
+                cout << "Thank you for playing! Goodbye!" << endl;
             } else {
                 cout << "Invalid input! Please enter 'Y' for Yes or 'N' for No." << endl;
             }
-        }
-
-        // If 'N' is chosen, exit the game
-        if (ans == 'N') {
-            cout << "Thank you for playing! Goodbye!" << endl;
-            break;
         }
     }
 
