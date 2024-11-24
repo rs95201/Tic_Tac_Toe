@@ -4,32 +4,34 @@ GameState::GameState(Board* board)
 {
     this->board = board;
 }
+
 bool GameState::winning_combo(std::vector<int> combo)
 {
-    if(combo.size() == 3)
+  
+    if (combo.size() == 3)
     {
-        return board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && board->get_mark(combo.at(1)) == board->get_mark(combo.at(2));
+        return board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
+               board->get_mark(combo[1]) == board->get_mark(combo[2]);
     }
-    else
+
+    else if (combo.size() == 4)
     {
-       if ((board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && 
-             board->get_mark(combo.at(0)) == board->get_mark(combo.at(2)))||
-            (board->get_mark(combo.at(0)) == board->get_mark(combo.at(1)) && 
-             board->get_mark(combo.at(0)) == board->get_mark(combo.at(3)))||
-            (board->get_mark(combo.at(0)) == board->get_mark(combo.at(2)) && 
-             board->get_mark(combo.at(0)) == board->get_mark(combo.at(3)))||
-            (board->get_mark(combo.at(1)) == board->get_mark(combo.at(2)) && 
-             board->get_mark(combo.at(1)) == board->get_mark(combo.at(3))))
-        {
-            return true;
-        }
-          else
-          {
-            return false;
-          }
-    }       
-    
+        
+        return (board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
+                board->get_mark(combo[0]) == board->get_mark(combo[2])) ||
+               (board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
+                board->get_mark(combo[0]) == board->get_mark(combo[3])) ||
+               (board->get_mark(combo[0]) == board->get_mark(combo[2]) &&
+                board->get_mark(combo[0]) == board->get_mark(combo[3])) ||
+               (board->get_mark(combo[1]) == board->get_mark(combo[2]) &&
+                board->get_mark(combo[1]) == board->get_mark(combo[3]));
+    }
+   
+    return false;
 }
+     
+    
+
 
 std::string GameState::select_winner(int cell)
 {

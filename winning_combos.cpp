@@ -2,14 +2,14 @@
 
 WinningCombos::WinningCombos()
 {
-    // Direct initialization of each combo
+
     std::vector<int> combo_one = {1, 2, 3};
     this->winning_combos.push_back(combo_one);
 
     std::vector<int> combo_two = {4, 5, 6};
     this->winning_combos.push_back(combo_two);
 
-    std::vector<int> combo_three = {7, 8, 9};  // Fixed repeated value error
+    std::vector<int> combo_three = {7, 8, 9};  
     this->winning_combos.push_back(combo_three);
 
     std::vector<int> combo_four = {1, 4, 7};
@@ -27,11 +27,9 @@ WinningCombos::WinningCombos()
     std::vector<int> combo_eight = {3, 5, 7};
     this->winning_combos.push_back(combo_eight);
 }
-
-// Constructor to add an additional combo
 WinningCombos::WinningCombos(std::vector<int> additional_combo)
 {
-    // Directly add the default combos
+   
     this->winning_combos.push_back({1, 2, 3});
     this->winning_combos.push_back({4, 5, 6});
     this->winning_combos.push_back({7, 8, 9});
@@ -41,7 +39,6 @@ WinningCombos::WinningCombos(std::vector<int> additional_combo)
     this->winning_combos.push_back({1, 5, 9});
     this->winning_combos.push_back({3, 5, 7});
 
-    // Add the additional combo
     this->winning_combos.push_back(additional_combo);
 }
 
