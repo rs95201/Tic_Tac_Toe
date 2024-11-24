@@ -28,6 +28,6 @@ void Game::start()
     }
   }
 
-  std::cout << game_state->current_state(current_player) << std::endl;
+  //std::cout << game_state->current_state(current_player) << std::endl;
   std::cout << game_state->current_state(other_player) << std::endl;
 }

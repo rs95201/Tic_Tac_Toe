@@ -57,7 +57,7 @@ void Pyromancer::get_move()
         if (option == 1) 
         {
             valid = true;
-            cout << "Sounds good! Enter a cell between 1 and 9." << endl;
+            cout << "Enter a cell between 1 and 9." << endl;
 
             bool valid_move = false;
             int value;
@@ -65,6 +65,7 @@ void Pyromancer::get_move()
             {
                 cout << "What is your move? (1-9)" << endl;
                 cin >> value;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (cin.fail())
                 {
                     cin.clear();
