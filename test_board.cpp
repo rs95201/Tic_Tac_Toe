@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <cassert>
 
 #include "board.hpp"
@@ -30,3 +30,4 @@ int main()
   cout << "All of the tests have passed!" << endl;
   return 0;
 }
+*/

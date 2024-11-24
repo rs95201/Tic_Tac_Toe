@@ -20,9 +20,9 @@ int main() {
     cout << "Welcome to Tic-Tac-Toe!" << endl;
     cout << "Do you want to play \"regular\" or \"battle\" Tic-Tac-Toe?" << endl;
     cin >> ans;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 
-    // Regular Game - Human vs Human
+    
     if (ans == "regular") {
         Human_Player player_one(&board, 'X');
         Human_Player player_two(&board, 'O');
@@ -31,35 +31,71 @@ int main() {
         cout << "Starting Regular Tic-Tac-Toe game!" << endl;
         game.start();
     } 
-    // Battle Game - Choose between Pyromancer or Swarm
+    
     else if (ans == "battle") {
-        string battle_choice;
-        cout << "Do you want to play as Pyromancer or Swarm?" << endl;
-        cout << "(Enter 'Pyromancer' or 'Swarm')" << endl;
-        cin >> battle_choice;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+        string battle_choice1, battle_choice2;
+        cout << "Player 1: Do you want to play as Pyromancer or Swarm?" << endl;
+        cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
+        cin >> battle_choice1;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+
+        cout << "Player 2: Do you want to play as Pyromancer or Swarm?" << endl;
+        cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
+        cin >> battle_choice2;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
         
-        if (battle_choice == "Pyromancer") {
-            Pyromancer player_one(&board, 'X');
-            Swarm player_two(&board, 'O');  // You can swap these as needed
+        
+        if (battle_choice1 == "Pyromancer") 
+        {
+            if(battle_choice2 == "Swarm")
+            {
+                Pyromancer player_one(&board, 'X');
+                Swarm player_two(&board, 'O');
+                Game game(&console, &game_state, &player_one, &player_two);
+                cout << "Starting Battle Tic-Tac-Toe!" << endl;
+                game.start();
+
+            }
+            else
+            {
+                Pyromancer player_one(&board, 'X');
+                Pyromancer player_two(&board, 'O');
+                Game game(&console, &game_state, &player_one, &player_two);
+                cout << "Starting Battle Tic-Tac-Toe!" << endl;
+                game.start();
+                
+            }
             
-            Game game(&console, &game_state, &player_one, &player_two);
-            cout << "Starting Battle Tic-Tac-Toe as Pyromancer!" << endl;
-            game.start();
         }
-        else if (battle_choice == "Swarm") {
-            Swarm player_one(&board, 'X');
-            Pyromancer player_two(&board, 'O');  // You can swap these as needed
-            
-            Game game(&console, &game_state, &player_one, &player_two);
-            cout << "Starting Battle Tic-Tac-Toe as Swarm!" << endl;
-            game.start();
+        else if (battle_choice1 == "Swarm") 
+        {
+            if(battle_choice2 == "Pyromancer")
+            {
+                Swarm player_one(&board, 'X');
+                Pyromancer player_two(&board, 'O');
+                Game game(&console, &game_state, &player_one, &player_two);
+                cout << "Starting Battle Tic-Tac-Toe!" << endl;
+                game.start();
+
+            }
+            else
+            {
+                Swarm player_one(&board, 'X');
+                Swarm player_two(&board, 'O');
+                Game game(&console, &game_state, &player_one, &player_two);
+                cout << "Starting Battle Tic-Tac-Toe!" << endl;
+                game.start();
+                
+            }
         }
-        else {
+        else 
+        {
             cout << "Invalid entry! Please choose 'Pyromancer' or 'Swarm'." << endl;
         }
     } 
-    else {
+    else 
+    {
         cout << "Invalid entry! Please choose 'regular' or 'battle'." << endl;
     }
 

@@ -8,6 +8,7 @@ Pyromancer::Pyromancer(Board* board, char mark)
     this->board = board;
     this->mark = mark;
     this->combos = WinningCombos();
+    bool has_exploded = false;
 }
 char Pyromancer::get_mark()
 {
@@ -32,25 +33,19 @@ void Pyromancer::get_move()
         break;
         }
     
-    cin >> option;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if (cin.fail()) {
+      cin >> option;
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    if (cin.fail()) 
+    {
             cin.clear();  
             cin.ignore(numeric_limits<streamsize>::max(), '\n');  
             cout << "Invalid entry!!! Please try again\n";
             cout << "Do you want to (1) enter a cell or (2) explode the board?" << endl;
             continue; 
-        }
-        if (option == 1 || option == 2) 
-        {
-            valid = true;  
-        } else 
-        {
-            cout << "Invalid entry!!! Please choose 1 or 2." << endl;
-        }
     }
     if (option == 1) 
     {
+        valid = true;
         cout << "Sounds good! Enter a cell between 1 and 9." << endl;
 
         bool valid_move = false;
@@ -80,9 +75,17 @@ void Pyromancer::get_move()
             }
         }
 
-    } else 
-    {  
+    }
+    else if(option == 2)
+    {
         cout << "Exploding the board!" << endl;
         this->board->clear();  
+        has_exploded = true;
     }
+    else 
+    {
+        cout << "Invalid entry!!! Please choose 1 or 2." << endl;
+    }
+    }
+    
 }

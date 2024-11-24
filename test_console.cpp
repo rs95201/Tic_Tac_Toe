@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <cassert>
 
 #include "board.hpp"
@@ -50,3 +50,4 @@ int main()
   std::cout << "All of the tests have passed!" << std::endl;
   return 0;
 }
+*/

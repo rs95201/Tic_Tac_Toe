@@ -8,6 +8,7 @@ class Pyromancer :  public Player
   Board* board;
   char mark;
   WinningCombos combos;
+  bool  has_exploded;
 
   public:
 
