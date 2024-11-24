@@ -41,16 +41,38 @@ int main() {
             } else if (ans == "battle") {
                 valid = true;
                 string battle_choice1, battle_choice2;
-                cout << "Player 1: Do you want to play as Pyromancer or Swarm?" << endl;
-                cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
-                cin >> battle_choice1;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
+                
+                // Input validation for Player 1 choice
+                while (true) {
+                    cout << "Player 1: Do you want to play as Pyromancer or Swarm?" << endl;
+                    cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
+                    cin >> battle_choice1;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
 
-                cout << "Player 2: Do you want to play as Pyromancer or Swarm?" << endl;
-                cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
-                cin >> battle_choice2;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
+                    // Validate input for player 1
+                    if (battle_choice1 == "Pyromancer" || battle_choice1 == "Swarm") {
+                        break;  // Exit the loop if input is valid
+                    } else {
+                        cout << "Invalid entry! Please choose 'Pyromancer' or 'Swarm'." << endl;
+                    }
+                }
 
+                // Input validation for Player 2 choice
+                while (true) {
+                    cout << "Player 2: Do you want to play as Pyromancer or Swarm?" << endl;
+                    cout << "(Enter \"Pyromancer\" or \"Swarm\")" << endl;
+                    cin >> battle_choice2;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
+
+                    // Validate input for player 2
+                    if (battle_choice2 == "Pyromancer" || battle_choice2 == "Swarm") {
+                        break;  // Exit the loop if input is valid
+                    } else {
+                        cout << "Invalid entry! Please choose 'Pyromancer' or 'Swarm'." << endl;
+                    }
+                }
+
+                // Setup the game based on chosen characters
                 if (battle_choice1 == "Pyromancer") {
                     if (battle_choice2 == "Swarm") {
                         Pyromancer player_one(&board, 'X');
@@ -79,29 +101,25 @@ int main() {
                         cout << "Starting Battle Tic-Tac-Toe!" << endl;
                         game.start();
                     }
-                } else {
-                    cout << "Invalid entry! Please choose 'Pyromancer' or 'Swarm'." << endl;
                 }
             } else {
                 cout << "Invalid entry! Please choose 'regular' or 'battle'." << endl;
             }
         }
-
-        // Replay logic
         char replayAnswer;
         bool validAnswer = false;
         while (!validAnswer) {
             cout << "Do you want to play again? (Y/N): ";
             cin >> replayAnswer;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear extra input
-            replayAnswer = toupper(replayAnswer);  // Convert to uppercase for case insensitivity
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  
+            replayAnswer = toupper(replayAnswer);  
             
             if (replayAnswer == 'Y') {
                 validAnswer = true;
-                playAgain = true;  // Set playAgain to true to continue playing
+                playAgain = true;  
             } else if (replayAnswer == 'N') {
                 validAnswer = true;
-                playAgain = false;  // Set playAgain to false to exit
+                playAgain = false;  
                 cout << "Thank you for playing! Goodbye!" << endl;
             } else {
                 cout << "Invalid input! Please enter 'Y' for Yes or 'N' for No." << endl;
