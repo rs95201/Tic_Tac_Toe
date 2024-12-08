@@ -9,11 +9,18 @@
 #include "game.hpp"
 #include "swarm.hpp"
 #include "pyromancer.hpp"
+#include "ttt_stats.hpp"
+#include "report.hpp"
+#include "report_writer.hpp"
 
 using namespace std;
 
 int main() 
 {
+    TTT ttt;
+    Report report(&ttt);
+    Report_Writer report_writer(&report);
+
     bool playAgain = true;  
     cout << "\n\t\tWelcome to Tic-Tac-Toe!" << endl;
 
@@ -42,6 +49,7 @@ int main()
 
                 cout << "Starting Regular Tic-Tac-Toe game!" << endl;
                 game.start();
+                ttt.stats(game_state.current_state(&player_two));
                 cout << console.display() << endl;
             } 
             else if (ans == "battle") 
@@ -110,6 +118,7 @@ int main()
                         Game game(&console, &game_state, &player_one, &player_two);
                         cout << "Starting Battle Tic-Tac-Toe!" << endl;
                         game.start();
+                        ttt.stats(game_state.current_state(&player_two));
                         cout << console.display() << endl;
                     } 
                     else 
@@ -119,6 +128,7 @@ int main()
                         Game game(&console, &game_state, &player_one, &player_two);
                         cout << "Starting Battle Tic-Tac-Toe!" << endl;
                         game.start();
+                        ttt.stats(game_state.current_state(&player_two));
                         cout << console.display() << endl;
                     }
                 } 
@@ -131,6 +141,7 @@ int main()
                         Game game(&console, &game_state, &player_one, &player_two);
                         cout << "Starting Battle Tic-Tac-Toe!" << endl;
                         game.start();
+                        ttt.stats(game_state.current_state(&player_two));
                         cout << console.display() << endl;
                     } 
                     else
@@ -140,6 +151,7 @@ int main()
                         Game game(&console, &game_state, &player_one, &player_two);
                         cout << "Starting Battle Tic-Tac-Toe!" << endl;
                         game.start();
+                        ttt.stats(game_state.current_state(&player_two));
                         cout << console.display() << endl;
                     }
                 }
@@ -167,6 +179,7 @@ int main()
             {
                 validAnswer = true;
                 playAgain = false;  
+                report_writer.write_to_file();
                 cout << "Thank you for playing! Goodbye!" << endl;
             } 
             else 
