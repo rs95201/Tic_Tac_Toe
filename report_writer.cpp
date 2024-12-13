@@ -4,7 +4,7 @@ Report_Writer::Report_Writer(Report* report) : report(report) {}
 void Report_Writer::write_to_file()
    {
      ofstream f;
-     f.open("TIC_TAC_TOE/text.txt");
+     f.open("stats.txt");
      if (f.is_open())
     { 
        f << report->generate_report();

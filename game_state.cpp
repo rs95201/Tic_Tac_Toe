@@ -5,32 +5,19 @@ GameState::GameState(Board* board)
     this->board = board;
 }
 
-bool GameState::winning_combo(std::vector<int> combo)
-{
-  
-    if (combo.size() == 3)
-    {
-        return board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
-               board->get_mark(combo[1]) == board->get_mark(combo[2]);
-    }
+bool GameState::winning_combo(std::vector<int> combo) {
+    if (combo.empty()) return false;
 
-    else if (combo.size() == 4)
-    {
-        
-        return (board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
-                board->get_mark(combo[0]) == board->get_mark(combo[2])) ||
-               (board->get_mark(combo[0]) == board->get_mark(combo[1]) &&
-                board->get_mark(combo[0]) == board->get_mark(combo[3])) ||
-               (board->get_mark(combo[0]) == board->get_mark(combo[2]) &&
-                board->get_mark(combo[0]) == board->get_mark(combo[3])) ||
-               (board->get_mark(combo[1]) == board->get_mark(combo[2]) &&
-                board->get_mark(combo[1]) == board->get_mark(combo[3]));
+    char first_mark = board->get_mark(combo[0]);
+    if (first_mark != 'X' && first_mark != 'O') return false; 
+
+    for (size_t i = 1; i < combo.size(); ++i) {
+        if (board->get_mark(combo[i]) != first_mark) {
+            return false;
+        }
     }
-   
-    return false;
+    return true;
 }
-     
-    
 
 
 std::string GameState::select_winner(int cell)
